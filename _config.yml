@@ -1,0 +1,82 @@
+# Site settings
+title: Another IT Blog
+description: 'Blog about Cloud, Devops, Linux and Home Lab' # this means to ignore newlines until "baseurl:"
+permalink: ':title:output_ext'
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "http://blog.roadmaps.link" # the base hostname & protocol for your site, e.g. http://example.com
+logo: "/assets/img/branding/MVM-logo-full.svg"
+logo-icon: "/assets/img/branding/MVM-symbol.svg"
+logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
+
+# Night/Dark mode
+# Default mode is "auto", "auto" is for auto nightshift
+# (19:00 - 07:00), "manual" is for manual toggle, and
+# "on/off" is for default on/off.
+#
+# Whatever the user's choice is, it will supersede the
+# default setting of the site and be kept during the
+# visit (session). Only the dark mode setting is "manual",
+# it will be always kept on every visit (i.e. no matter
+# the browser is closed or not)
+night_mode: "auto"
+
+logo-dark: "/assets/img/branding/MVM-logo-full-dark.svg"
+highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code highlighter if needed
+
+# Author settings
+author: Scott Powell # add your name
+author-pic: Myself_Neon_grey.jpg
+about-author: U.S. Army Officer specilizing in cybersecurity and IT Operations with 20+ years of experience, tech enthusiast with a passion for open-source, home lab and microservices
+
+# Contact links
+email: scottiepowell@gmail.com # Add your Email address
+phone: # 785-465-0000
+website: https://blog.roadmaps.link # Add your website
+linkedin: placeholder # Add your Linkedin handle
+github: scottiepowell # Add your Github handle
+twitter: 'scottiepowell' # Add your Twitter handle
+bandcamp: placeholder # Add your Bandcamp username
+stackoverflow: placeholder # Add your stackoverflow account
+
+# Newsletter
+mailchimp: "https://github.us1.list-manage.com/subscribe/post?u=8ece198b3eb260e6838461a60&amp;id=397d90b5f4" #Make a mailchimp newsletter?
+
+# Disqus
+discus_identifier: placeholder # Add your discus identifier
+comments_curtain: yes # leave empty to show the disqus embed directly
+
+# Tracker
+analytics: G-R8SZS2YBZK #Google Analytics?
+fbadmin: ar.maybach #what is this?
+
+# Paginate
+paginate: 10
+paginate_path: 'page:num'
+words_per_minute: 200
+
+# Build settings
+markdown: kramdown
+mathjax: true
+highlighter: rouge
+compress_html:
+  clippings: all
+  comments: all
+  startings: [html, head, body]
+
+# Outputting
+timezone: America/Denver# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+category_archive:
+  type: liquid
+  path: /categories/
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+
+include: [_pages]
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "package-lock.json", "assets/css/sass/"]
