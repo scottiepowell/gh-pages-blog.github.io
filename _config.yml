@@ -6,7 +6,7 @@ baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://blog.roadmaps.link" # the base hostname & protocol for your site, e.g. http://example.com
 #logo: "/assets/img/branding/MVM-logo-full.svg"
 logo: "/assets/img/branding/Another-IT-Blog.png"
-logo-icon: "/assets/img/branding/MVM-symbol.svg"
+logo-icon: "/assets/img/branding/logo-binary.png"
 #logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
 logo-icon-SEO: "/assets/img/branding/Another-IT-Blog.png" # must be a non SVG file
 
