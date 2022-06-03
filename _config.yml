@@ -7,7 +7,8 @@ url: "http://blog.roadmaps.link" # the base hostname & protocol for your site, e
 #logo: "/assets/img/branding/MVM-logo-full.svg"
 logo: "/assets/img/branding/Another-IT-Blog.png"
 logo-icon: "/assets/img/branding/MVM-symbol.svg"
-logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
+#logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
+logo-icon-SEO: "/assets/img/branding/Another-IT-Blog.png" # must be a non SVG file
 
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift
