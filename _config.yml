@@ -22,7 +22,8 @@ logo-icon-SEO: "/assets/img/branding/Another-IT-Blog.png" # must be a non SVG fi
 # the browser is closed or not)
 night_mode: "auto"
 
-logo-dark: "/assets/img/branding/MVM-logo-full-dark.svg"
+#logo-dark: "/assets/img/branding/MVM-logo-full-dark.svg"
+logo-dark: "/assets/img/branding/Another-IT-Blog.png"
 highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code highlighter if needed
 
 # Author settings
