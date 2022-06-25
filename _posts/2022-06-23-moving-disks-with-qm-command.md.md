@@ -13,12 +13,12 @@ description: "Moving vm's with the qm command"
 I recently bought some new HDD's, a much needed storage upgrade for my proxmox cluster, i've been running into storage issues in my current configuration.  I've got a 1TB HDD that is hosting all my VM's, LXC's and images for my primary node.  I've researched a few different ways to migrate VM's from one physical storage to another, they all have their pro's and con's.  For my particular use case i going to use a three stage method to migrate all my VM's using the proxmox GUI and the QM command.
 
 ## Concept of Operations (CONOP)
-step 1. Move contents from current storage to an intermediate USB storage
+1. Move contents from current storage to an intermediate USB storage
    > this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
-step 2. validate the VM is FMC on the intermediate USB storage
+2. validate the VM is FMC on the intermediate USB storage
    > remove the old storage from the server 
-step 3. Move content from intermediate USB storage to new SATA based storage
-step 4. validate the VM is FMC on the new SATA based storage   
+3. Move content from intermediate USB storage to new SATA based storage
+4. validate the VM is FMC on the new SATA based storage   
 
 ___
 
