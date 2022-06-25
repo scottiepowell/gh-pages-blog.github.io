@@ -13,12 +13,12 @@ description: "Moving vm's with the qm command"
 I recently bought some new HDD's, a much needed storage upgrade for my proxmox cluster, i've been running into storage issues in my current configuration.  I've got a 1TB HDD that is hosting all my VM's, LXC's and images for my primary node.  I've researched a few different ways to migrate VM's from one physical storage to another, they all have their pro's and con's.  For my particular use case i going to use a three stage method to migrate all my VM's using the proxmox GUI and the QM command.
 
 ## Concept of Operations (CONOP)
-1. Move contents from current storage to an intermediate USB storage
+step 1. Move contents from current storage to an intermediate USB storage
    > this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
-2. validate the VM is FMC on the intermediate USB storage
+step 2. validate the VM is FMC on the intermediate USB storage
    > remove the old storage from the server 
-4. Move content from intermediate USB storage to new SATA based storage
-5. validate the VM is FMC on the new SATA based storage   
+step 3. Move content from intermediate USB storage to new SATA based storage
+step 4. validate the VM is FMC on the new SATA based storage   
 
 ___
 
@@ -36,17 +36,15 @@ Look at the output of CAT on the line for sci0, most of the information needed i
    > 1070 is the VM ID
    > scsi0 is the disk you want to move
 - barra-usb-4tb-vm is the directory that the USB storage is configured under, this can be found from command line
-   > type the following command 'cat /etc/pve/storage.cfg'
+   > type the following command'cat /etc/pve/storage.cfg'
    > output will be all the storage locations, below is the directory that i've created with additional details
    
-'''
    dir: barra-usb-4tb-vm
    path /mnt/4tb-barracuda
    content rootdir,images,vztmpl
    nodes proxmox1
    prune-backups keep-all=1
    shared 0
-'''
    
 Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the --format option 
    
