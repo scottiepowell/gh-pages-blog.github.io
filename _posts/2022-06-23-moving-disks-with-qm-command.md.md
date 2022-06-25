@@ -15,10 +15,10 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 ## Concept of Operations (CONOP)
 1. Move contents from current storage to an intermediate USB storage
    - this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
-2. validate all VM's are FMC on the intermediate USB storage
+2. validate the VM is FMC on the intermediate USB storage
    - remove the old storage from the server 
 4. Move content from intermediate USB storage to new SATA based storage
-5. validate all VM's are FMC on the new SATA based storage   
+5. validate the VM is FMC on the new SATA based storage   
 
 ___
 
@@ -27,34 +27,33 @@ The command to move disks is the QM command
    qm move_disk <vmid> <disk> <storage> [OPTIONS]
 
 First thing with moving the storage, let's navigate to the storage loction on the Proxmox node and take a look at our storage 
-   
-   cat /etc/pve/nodes/<node name>/qemu-server/<.conf file of VM>
+    'cat /etc/pve/nodes/<node name>/qemu-server/<.conf file of VM>'
       
 Look at the output of CAT on the line for sci0, most of the information needed is on that line
    
-   - scsi0: local-lvm:vm-1070-disk-0,size=60G  
+   - 'scsi0: local-lvm:vm-1070-disk-0,size=60G'  
       - 1070 is the VM ID
       - scsi0 is the disk you want to move
    - barra-usb-4tb-vm is the directory that the USB storage is configured under, this can be found from command line
-      - type the following command cat /etc/pve/storage.cfg
+      - type the following command 'cat /etc/pve/storage.cfg'
       - output will be all the storage locations, below is the directory that i've created with additional details
-            dir: barra-usb-4tb-vm
-            path /mnt/4tb-barracuda
-            content rootdir,images,vztmpl
-            nodes proxmox1
-            prune-backups keep-all=1
-            shared 0
+               dir: barra-usb-4tb-vm
+               path /mnt/4tb-barracuda
+               content rootdir,images,vztmpl
+               nodes proxmox1
+               prune-backups keep-all=1
+               shared 0
    
    - Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the --format option 
    
    The full command to move the vm is below:
    
-   qm move_disk 1070 scsi0 barra-usb-4tb-vm --format qcow2 --target-vmid 1070
+   'qm move_disk 1070 scsi0 barra-usb-4tb-vm --format qcow2 --target-vmid 1070'
    
    After the move is complete, go back into the 1070.conf file and verify the move with two lines, the storage will change and unused storage will be the old storage
    
-   - scsi0:barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G
-   - barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G
+   - 'scsi0:barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G'
+   - 'barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G'
       
 {% comment %}
 
