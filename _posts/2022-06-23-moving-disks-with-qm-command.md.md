@@ -44,14 +44,14 @@ type the following command:
 
 the output of the command will be all the storage locations, below is the directory to move storage
    
-   dir: barra-usb-4tb-vm
-   path /mnt/4tb-barracuda
-   content rootdir,images,vztmpl
-   nodes proxmox1
-   prune-backups keep-all=1
-   shared 0
+    dir: barra-usb-4tb-vm
+    path /mnt/4tb-barracuda
+    content rootdir,images,vztmpl
+    nodes proxmox1
+    prune-backups keep-all=1
+    shared 0
    
-Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the --format option 
+Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the '--format qcow2' option 
    
 The full command to move the vm is below:
    
