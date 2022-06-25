@@ -22,6 +22,8 @@ step 4. validate the VM is FMC on the new SATA based storage
 
 ___
 
+## Step 1
+
 The command to move disks is the QM command
 
     qm move_disk <vmid> <disk> <storage> [OPTIONS]
@@ -36,7 +38,7 @@ Look at the output of CAT on the line for sci0, most of the information needed i
       > 1070 is the VM ID
       > scsi0 is the disk you want to move
 
-barra-usb-4tb-vm is the directory that the USB storage is configured under, this can be found from command line
+`barra-usb-4tb-vm` is the directory that the USB storage is configured under, this can be found from command line
 
 type the following command:
 
@@ -51,7 +53,7 @@ the output of the command will be all the storage locations, below is the direct
     prune-backups keep-all=1
     shared 0
    
-Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the '--format qcow2' option 
+Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the `--format qcow2` option 
    
 The full command to move the vm is below:
    
