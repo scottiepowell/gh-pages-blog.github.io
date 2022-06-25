@@ -24,7 +24,7 @@ ___
 
 The command to move disks is the QM command
 
-'qm move_disk <vmid> <disk> <storage> [OPTIONS]'
+    'qm move_disk <vmid> <disk> <storage> [OPTIONS]'
 
 First thing with moving the storage, let's navigate to the storage loction on the Proxmox node and take a look at our storage 
 
