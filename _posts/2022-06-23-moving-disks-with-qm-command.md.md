@@ -57,14 +57,18 @@ Format, for this particular VM i want to change the format from RAW to qcow2, we
    
 The full command to move the vm is below:
    
-    qm move_disk 1070 scsi0 barra-usb-4tb-vm --format qcow2 --target-vmid 1070
+    qm move_disk 1070 scsi0 barra-usb-4tb-vm --format qcow2
    
 After the move is complete, go back into the 1070.conf file and verify the move with two lines, the storage will change and unused storage will be the old storage
 
     scsi0:barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G
    
     barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G
-      
+___
+
+## Step 2
+
+
 {% comment %}
 
    //markdown common syntax
