@@ -10,10 +10,9 @@ category: Homelab
 author: Scott Powell
 description: "Moving vm's with the qm command"
 ---
-#
 I recently bought some new HDD's, a much needed storage upgrade for my proxmox cluster, i've been running into storage issues in my current configuration.  I've got a 1TB HDD that is hosting all my VM's, LXC's and images for my primary node.  I've researched a few different ways to migrate VM's from one physical storage to another, they all have their pro's and con's.  For my particular use case i going to use a three stage method to migrate all my VM's using the proxmox GUI and the QM command.
 
-# Concept of Operations (CONOP)
+## Concept of Operations (CONOP)
 1. Move contents from current storage to an intermediate USB storage
    - this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
 2. validate all VM's are FMC on the intermediate USB storage
@@ -21,9 +20,43 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 4. Move content from intermediate USB storage to new SATA based storage
 5. validate all VM's are FMC on the new SATA based storage   
 
+___
 
-{% comment %} 
-//the command is qm move_disk <vmid> <disk> <storage> [OPTIONS]
+The command to move disks is the QM command
+
+   qm move_disk <vmid> <disk> <storage> [OPTIONS]
+
+First thing with moving the storage, let's navigate to the storage loction on the Proxmox node and take a look at our storage 
+   
+   cat /etc/pve/nodes/<node name>/qemu-server/<.conf file of VM>
+      
+Look at the output of CAT on the line for sci0, most of the information needed is on that line
+   
+   - scsi0: local-lvm:vm-1070-disk-0,size=60G  
+      - 1070 is the VM ID
+      - scsi0 is the disk you want to move
+   - barra-usb-4tb-vm is the directory that the USB storage is configured under, this can be found from command line
+      - type the following command cat /etc/pve/storage.cfg
+      - output will be all the storage locations, below is the directory that i've created with additional details
+            dir: barra-usb-4tb-vm
+            path /mnt/4tb-barracuda
+            content rootdir,images,vztmpl
+            nodes proxmox1
+            prune-backups keep-all=1
+            shared 0
+   
+   - Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the --format option 
+   
+   The full command to move the vm is below:
+   
+   qm move_disk 1070 scsi0 barra-usb-4tb-vm --format qcow2 --target-vmid 1070
+   
+   After the move is complete, go back into the 1070.conf file and verify the move with two lines, the storage will change and unused storage will be the old storage
+   
+   - scsi0:barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G
+   - barra-usb-4tb-vm:1070/vm-1070-disk-0.qcow2,size=60G
+      
+{% comment %}
 
    //markdown common syntax
 
@@ -50,7 +83,6 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 [//]: # (create a horizontal rule, use three or more asterisks (***), dashes (---), or underscores (___) on a line by)    
 
 [//]: # (This is a method of using MD to make a comment)
-
-[Comment test]::  
+  
 {% endcomment %}
 
