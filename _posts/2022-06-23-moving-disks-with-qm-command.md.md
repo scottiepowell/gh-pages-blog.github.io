@@ -32,21 +32,21 @@ First thing with moving the storage, let's navigate to the storage loction on th
       
 Look at the output of CAT on the line for sci0, most of the information needed is on that line
    
-'scsi0: local-lvm:vm-1070-disk-0,size=60G'  
+    scsi0: local-lvm:vm-1070-disk-0,size=60G
    > 1070 is the VM ID
    > scsi0 is the disk you want to move
 - barra-usb-4tb-vm is the directory that the USB storage is configured under, this can be found from command line
    > type the following command 'cat /etc/pve/storage.cfg'
    > output will be all the storage locations, below is the directory that i've created with additional details
    
-    '''
-    dir: barra-usb-4tb-vm
-    path /mnt/4tb-barracuda
-    content rootdir,images,vztmpl
-    nodes proxmox1
-    prune-backups keep-all=1
-    shared 0
-    '''
+'''
+   dir: barra-usb-4tb-vm
+   path /mnt/4tb-barracuda
+   content rootdir,images,vztmpl
+   nodes proxmox1
+   prune-backups keep-all=1
+   shared 0
+'''
    
 Format, for this particular VM i want to change the format from RAW to qcow2, we can do this with the --format option 
    
