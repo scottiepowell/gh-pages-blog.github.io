@@ -15,7 +15,7 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 
 # Concept of Operations (CONOP)
 1. Move contents from current storage to an intermediate USB storage
-   - necesary step because i don't have an addtional SATA connector to plug in the HDD 
+   - this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
 2. validate all VM's are FMC on the intermediate USB storage
    - remove the old storage from the server 
 4. Move content from intermediate USB storage to new SATA based storage
