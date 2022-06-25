@@ -14,9 +14,9 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 
 ## Concept of Operations (CONOP)
 1. Move contents from current storage to an intermediate USB storage
-   - this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
+   > this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
 2. validate the VM is FMC on the intermediate USB storage
-   - remove the old storage from the server 
+   > remove the old storage from the server 
 4. Move content from intermediate USB storage to new SATA based storage
 5. validate the VM is FMC on the new SATA based storage   
 
@@ -24,7 +24,7 @@ ___
 
 The command to move disks is the QM command
 
-   qm move_disk <vmid> <disk> <storage> [OPTIONS]
+'qm move_disk <vmid> <disk> <storage> [OPTIONS]'
 
 First thing with moving the storage, let's navigate to the storage loction on the Proxmox node and take a look at our storage 
     'cat /etc/pve/nodes/<node name>/qemu-server/<.conf file of VM>'
