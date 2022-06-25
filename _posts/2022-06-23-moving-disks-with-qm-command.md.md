@@ -22,7 +22,7 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 5. validate all VM's are FMC on the new SATA based storage   
 
 
-
+{% comment %} 
 //the command is qm move_disk <vmid> <disk> <storage> [OPTIONS]
 
    //markdown common syntax
@@ -51,5 +51,6 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 
 [//]: # (This is a method of using MD to make a comment)
 
-[Comment test]::   
+[Comment test]::  
+{% endcomment %}
 
