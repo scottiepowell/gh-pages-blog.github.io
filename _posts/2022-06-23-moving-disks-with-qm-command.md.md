@@ -35,9 +35,12 @@ Look at the output of CAT on the line for sci0, most of the information needed i
     scsi0: local-lvm:vm-1070-disk-0,size=60G
    > 1070 is the VM ID
    > scsi0 is the disk you want to move
+
 barra-usb-4tb-vm is the directory that the USB storage is configured under, this can be found from command line
+
 type the following command:
-   'cat /etc/pve/storage.cfg'
+
+'cat /etc/pve/storage.cfg'
 
 the output of the command will be all the storage locations, below is the directory to move storage
    
