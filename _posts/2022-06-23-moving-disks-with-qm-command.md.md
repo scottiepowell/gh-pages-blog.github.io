@@ -15,10 +15,10 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
 ## Concept of Operations (CONOP)
 1. Move contents from current storage to an intermediate USB storage
    > this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
-2. validate the VM is FMC on the intermediate USB storage
+2. validate the VM is working on the intermediate USB storage
    > remove the old storage from the server 
 3. Move content from intermediate USB storage to new SATA based storage
-4. validate the VM is FMC on the new SATA based storage   
+4. validate the VM is working on the new SATA based storage   
 
 ___
 
@@ -68,6 +68,7 @@ ___
 
 ## Step 2
 
+Once all the VM's are moved over to the new storage and you are confident that everything is working, go into the Proxmox GUI and 
 
 {% comment %}
 
