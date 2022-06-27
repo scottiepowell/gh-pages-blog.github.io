@@ -87,7 +87,7 @@ Now let's make the primary partition using 100% of the disk.
 
 We have a partition now, sdc1, creating a file system is the next task with a volume label for future use since sdc is so generic
 
-'mkfs.ext4 -L wd-4tb /dev/sdc1'
+`mkfs.ext4 -L wd-4tb /dev/sdc1`
 
 Run `lsblk -fs` to verify that the file system was created, the next step is to mount the drive on the server
 
