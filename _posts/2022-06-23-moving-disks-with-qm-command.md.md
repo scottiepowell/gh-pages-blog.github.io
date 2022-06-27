@@ -33,7 +33,7 @@ First thing with moving the storage, let's navigate to the storage loction on th
 
     cat /etc/pve/nodes/<node name>/qemu-server/<.conf file of VM>
       
-Look at the output of CAT on the line for sci0, most of the information needed is on that line
+Look at the output of CAT on the line for scsi0, most of the information needed is on that line
    
     scsi0: local-lvm:vm-1070-disk-0,size=60G
       > 1070 is the VM ID
@@ -45,7 +45,7 @@ type the following command:
 
     cat /etc/pve/storage.cfg
 
-the output of the command will be all the storage locations, below is the directory to move storage
+the output of the command will be all the storage locations, below you can find the directory to move storage into under 'dir:'
    
     dir: barra-usb-4tb-vm
     path /mnt/4tb-barracuda
@@ -70,6 +70,8 @@ ___
 ## Step 2
 
 Once all the VM's are moved over to the new storage and you are confident that everything is working, go into the Proxmox GUI and remove the volume group, in this case for myself it was 1tb-wd.  If you receive a error or the GUI method will not work, try running `lvremove -f /dev/<name of disk>` and rerun the remove command.
+
+___
 
 ## Step 3
 
@@ -99,10 +101,18 @@ open up fstab with a editor `nano /etc/fstab` then add a line `LABEL=wd-4tb /mnt
 
 `mount -a`
 
+___
+
 ## Step 4
 
+Now, move the VM's back into your storage attached to the server via SATA connectors.  There are a couple of ways to move the storage.
 
+1. Move using web GUI
+2. Move via the command line
 
+The web GUI might be the easier option and if you have a VM that is being stubborn and will not move via GUI, then use the command line, it is the same command `qm move_disk` that was used in STEP 1.
+
+Until next time
 {% comment %}
 
    //markdown common syntax
