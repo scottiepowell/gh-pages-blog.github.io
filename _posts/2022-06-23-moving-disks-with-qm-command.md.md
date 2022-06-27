@@ -17,7 +17,8 @@ I recently bought some new HDD's, a much needed storage upgrade for my proxmox c
    > this is a necesary step because i don't have an addtional SATA connector to plug additional storage into 
 2. validate the VM is working on the intermediate USB storage
    > remove the old storage from the server 
-3. Move content from intermediate USB storage to new SATA based storage
+3. Setup new SATA based storage on server
+   > move VM's from USB storage to SATA based storage
 4. validate the VM is working on the new SATA based storage   
 
 ___
@@ -68,7 +69,39 @@ ___
 
 ## Step 2
 
-Once all the VM's are moved over to the new storage and you are confident that everything is working, go into the Proxmox GUI and 
+Once all the VM's are moved over to the new storage and you are confident that everything is working, go into the Proxmox GUI and remove the volume group, in this case for myself it was 1tb-wd.  If you receive a error or the GUI method will not work, try running `lvremove -f /dev/<name of disk>` and rerun the remove command.
+
+## Step 3
+
+Setup your new HDD with the SATA connectors using the following steps:
+
+First, identify the new HDD using the command `lsblk`, in my case this was sdc
+
+Run the following command with parted, if you need to install parted run `sudo apt install parted`.  You can use MBR as a partition table, GPT is a new and better standard so i'm using GPT. 
+
+`parted /dev/sdc mklabel gpt` 
+
+Now let's make the primary partition using 100% of the disk.
+
+`parted -a opt /dev/sdc mkpart primary ext4 0% 100%`
+
+We have a partition now, sdc1, creating a file system is the next task with a volume label for future use since sdc is so generic
+
+'mkfs.ext4 -L wd-4tb /dev/sdc1'
+
+Run `lsblk -fs` to verify that the file system was created, the next step is to mount the drive on the server
+
+Make a directory in the mnt directory `mkdir -p /mnt/<folder name>`
+
+Edit the fstab so the file system will automount
+
+open up fstab with a editor `nano /etc/fstab` then add a line `LABEL=wd-4tb /mnt/wd-4tb ext4 defaults 0 2`
+
+`mount -a`
+
+## Step 4
+
+
 
 {% comment %}
 
