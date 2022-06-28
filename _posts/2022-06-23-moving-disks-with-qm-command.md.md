@@ -83,15 +83,15 @@ First, identify the new HDD using the command `lsblk`, in my case this was sdc
 
 Run the following command with parted, if you need to install parted run `sudo apt install parted`.  You can use MBR as a partition table, GPT is a new and better standard so i'm using GPT. 
 
-`parted /dev/sdc mklabel gpt` 
+    parted /dev/sdc mklabel gpt
 
 Now let's make the primary partition using 100% of the disk.
 
-`parted -a opt /dev/sdc mkpart primary ext4 0% 100%`
+    parted -a opt /dev/sdc mkpart primary ext4 0% 100%
 
 We have a partition now, sdc1, creating a file system is the next task with a volume label for future use since sdc is so generic
 
-`mkfs.ext4 -L wd-4tb /dev/sdc1`
+    mkfs.ext4 -L wd-4tb /dev/sdc1
 
 Run `lsblk -fs` to verify that the file system was created, the next step is to mount the drive on the server
 
@@ -101,7 +101,7 @@ Edit the fstab so the file system will automount
 
 open up fstab with a editor `nano /etc/fstab` then add a line `LABEL=wd-4tb /mnt/wd-4tb ext4 defaults 0 2`
 
-`mount -a`
+    mount -a
 
 ___
 
@@ -114,7 +114,9 @@ Now, move the VM's back into your storage attached to the server via SATA connec
 
 The web GUI might be the easier option and if you have a VM that is being stubborn and will not move via GUI, then use the command line, it is the same command `qm move_disk` that was used in STEP 1.
 
-Until next time
+At this point, your HDD's should be moved back to the new storage on your server, i'm going to use the USB for backups.
+
+Cheers
 {% comment %}
 
    //markdown common syntax
