@@ -67,7 +67,7 @@ networks:
     external: true      
 ___
 
-The networks section of this docker-compose is critical to get right, this section will tell Docker to install Grafana on a specific network under name.  The *network must be the same as the network that influxDB was installed on* or else the to containers will not be able to communicate.
+The networks section of this docker-compose is critical to get right, this section will tell Docker to install Grafana on a specific network under name.  The **network must be the same as the network that influxDB was installed on** or else the to containers will not be able to communicate.
 
 Now run the following command from the diretory of our docker-compose file
 
@@ -77,6 +77,17 @@ Verify your container is running with `docker ps`
 
 Security, one important thing to point out is this configuration doesn't include any inherent security features like SSL, the connections are insecure.  Right now, i'm using a reverse proxy to secure the containers and the connection to proxmox is on my internal network, but in the future i'll look at doing a updated posted to describ how to secure the connections between Proxmox, Influx and Grafana with SSL for a production environment.  Right now, that is out of scope.
 
+Once Grafana is installed, navigate to `http://<ip address>:3000` and login with the default username/password of `admin/admin`.  Once logged in navigate to configure > Datasource and install InfluxDB
+
+Install the settings as follows, important, **the hostname in the http setting is the docker hostname of your influxdb container** 
+
+Set the influxdb bucket name, organization and API token that was previusly established with the influxdb container.
+
+There is a really great dashboard for Proxmox at this link, you can create your own dashboard but this dashboard had everything that i wanted
+
+https://grafana.com/grafana/dashboards/15356
+
+Now navigate to the dashboard you have created, my bucket defaulted to a different bucket, make sure you select the right bucket and enjoy your metrics!
 
 
 {% comment %}
