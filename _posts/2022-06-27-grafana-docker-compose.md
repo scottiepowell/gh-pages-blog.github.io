@@ -16,8 +16,68 @@ Monitoring of servers and services is always important in a homelab, especially 
 
 ## Concept of Operations (CONOP)
 1. install influxdb on docker(using portainer)  
-2. 
+2. configure the metric server on proxmox
+3. configure a dashboard (using Grafana)
+
+## Step 1
+
+
+
+## Step 2
+
+
+
+## Step 3
+
+In step 1, we use portainer to deploy the influxdb docker container, for grafana, we are going to mix things up and deploy using a docker-compose YAML file.
+
+I'll break the code into smaller chunks and provide some narrative on each section, here is a link to the full code on my github and can skip this section if you are familar with docker-compose and how it utilizes YAML values
+
 ___
+
+```
+version: '3'
+
+volumes:
+  grafana-data:
+    driver: local
+```
+
+The version with a value of 3 in the code above tells the Docker Daemon that the file will be compatible with a version 1.13.0 and above of the Docker Engine.  The volume creates a grafana volume in docker and mounts the volume in the container at '/var/lib/grafana', this is important for keeping persistent data if the container is removed or destroyed.
+
+___
+```
+services:
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+```    
+
+The image above tells Docker to pull the latest open-source grafana image 'grafana-oss' from Docker Hub.  Instead of using the tag 'latest' there are other options to use operating systems like Ubuntu, the latest tag defaults to the operating system of alpine.  The ports are mapped from docker to the container on 3000 and the volume is mounted as discussed earlier.
+___   
+   
+networks:
+  default:
+    name: nginxproxymanager_default
+    external: true      
+___
+
+The networks section of this docker-compose is critical to get right, this section will tell Docker to install Grafana on a specific network under name.  The *network must be the same as the network that influxDB was installed on* or else the to containers will not be able to communicate.
+
+Now run the following command from the diretory of our docker-compose file
+
+    docker-compose up -d
+
+Verify your container is running with `docker ps`
+
+Security, one important thing to point out is this configuration doesn't include any inherent security features like SSL, the connections are insecure.  Right now, i'm using a reverse proxy to secure the containers and the connection to proxmox is on my internal network, but in the future i'll look at doing a updated posted to describ how to secure the connections between Proxmox, Influx and Grafana with SSL for a production environment.  Right now, that is out of scope.
+
+
 
 {% comment %}
 
