@@ -1,4 +1,4 @@
---
+---
 layout: post
 read_time: true
 show_date: true
@@ -21,7 +21,13 @@ Monitoring of servers and services is always important in a homelab, especially 
 
 ## Step 1
 
+First thing is to install the influxdb on docker, i'm going to use portainer, portainer is a web-based UI for container technology, it works particularly well for docker installs and maintainece.  Installing portainer is a seperate discussion and another blog post for another time.  A quick google search will land many tutorials for portainer if you don't want to wait on me to make a blog post.
+ and scroll down 
+First thing is creating a container in portainer, as seen below i've created a container named `influxdb` and we are pulling the image from DockerHub using the alpine distro and version 2.1.  If you want to research version for infuxdb, navigate to (https://hub.docker.com/_/influxdb?tab=tags&page=2) and you will find the 2.1-alpine tag.  One of the strengths of containers is if you want to experiment and test other containers with a different OS or versions, it's a quick rebuild and standup a new container.    
 
+![Portainer Container settings](/gh-pages-blog.github.io/assets/img/posts/2022-06-27/port-img-net.PNG)
+
+![Portainer containers running](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-container-running.PNG)
 
 ## Step 2
 
