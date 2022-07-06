@@ -39,6 +39,8 @@ Now to persist the data collected, naviagate to the volume tab in portainer and 
 
 ![Container volume settings](./assets/img/posts/2022-06-27/port-vol-settings.PNG)
 
+<center><img src='/assets/img/posts/2022-06-27/port-vol-settings.PNG'></center>
+
 Now, deploy the container by clicking the 'deploy container' button and check the container to verify that the container is running, if the container isn't running take a look at the docker logs for errors, the logs can be seen in the bottom corner of the sceenshot.
 
 ![Influxdb container running](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-container-running.PNG)
