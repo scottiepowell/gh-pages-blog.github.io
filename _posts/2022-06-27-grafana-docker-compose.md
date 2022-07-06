@@ -25,7 +25,7 @@ First thing is to install the influxdb on docker, i'm going to use portainer, po
 
 First thing, navigate to the volume tab in portainer and create a new volume.  The volume will be assigned to the influx db for capturing persistent data. 
 
-![Create a volume in portainer](/posts/2022-06-27/port-vol-create.PNG)
+![Create a volume in portainer](.assets/img/posts/2022-06-27/port-vol-create.PNG)
 
 Next is creating a container in portainer, as seen below i've created a container named `influxdb` and we are pulling the image from DockerHub using the alpine distro and version 2.1.  If you want to research version for infuxdb, navigate to https://hub.docker.com/_/influxdb?tab=tags&page=2 and you will find the 2.1-alpine tag.  One of the strengths of containers is if you want to experiment and test other containers with a different OS or versions, it's a quick rebuild and standup a new container.  Expose the port of 8086 in docker and the container.    
 
