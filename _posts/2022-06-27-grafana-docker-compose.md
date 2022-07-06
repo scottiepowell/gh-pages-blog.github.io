@@ -22,26 +22,44 @@ Monitoring of servers and services is always important in a homelab, especially 
 ## Step 1
 
 First thing is to install the influxdb on docker, i'm going to use portainer, portainer is a web-based UI for container technology, it works particularly well for docker installs and maintainece.  Installing portainer is a seperate discussion and another blog post for another time.  A quick google search will land many tutorials for portainer if you don't want to wait on me to make a blog post.
- and scroll down 
-First thing is creating a container in portainer, as seen below i've created a container named `influxdb` and we are pulling the image from DockerHub using the alpine distro and version 2.1.  If you want to research version for infuxdb, navigate to (https://hub.docker.com/_/influxdb?tab=tags&page=2) and you will find the 2.1-alpine tag.  One of the strengths of containers is if you want to experiment and test other containers with a different OS or versions, it's a quick rebuild and standup a new container.    
 
-### Portainer containers running
+First thing, navigate to the volume tab in portainer and create a new volume.  The volume will be assigned to the influx db for capturing persistent data. 
 
-![aaa](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-img-net.PNG)
+![Create a volume in portainer](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-vol-create.PNG)
 
-![Portainer Image/Container Settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-container-running.PNG)
+Next is creating a container in portainer, as seen below i've created a container named `influxdb` and we are pulling the image from DockerHub using the alpine distro and version 2.1.  If you want to research version for infuxdb, navigate to https://hub.docker.com/_/influxdb?tab=tags&page=2 and you will find the 2.1-alpine tag.  One of the strengths of containers is if you want to experiment and test other containers with a different OS or versions, it's a quick rebuild and standup a new container.  Expose the port of 8086 in docker and the container.    
 
-![aaa](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-net-settings.PNG)
+![Container image settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-img-net.PNG)
 
-![aaa](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-vol-create.PNG)
+Now, the advanced options of portainer must be configured for this container, navigate to the network options and give the container a hostname and assign the container to a docker network.  Both of these settings will be important later, both grafana and influxdb must reside in the same docker network.  Setting the hostname will make it easier in allowing influxdb to query by the docker hostname and port number. 
 
-![aaa](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-vol-settings.PNG)
+![Container network settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-net-settings.PNG)
 
-![aaa](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/proxmox-metric-server.PNG)
+Now to persist the data collected, naviagate to the volume tab in portainer and setup two volumes, the volume created earlier will be first, connection the volume to the location `/var/lib/influxdb2` in the container and bind mount a container to `/etc/influxdb` on both the host and container.
+
+![Container volume settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-vol-settings.PNG)
+
+Now, deploy the container by clicking the 'deploy container' button and check the container to verify that the container is running, if the container isn't running take a look at the docker logs for errors, the logs can be seen in the bottom corner of the sceenshot.
+
+![Influxdb container running](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-container-running.PNG)
+
+Now that the container is up and running, we'll setup the influxdb account, created a username, password, bucket and a organization name (you can just make up a organization)
+
+![user setup](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/influx-user-setup.PNG)
+
+Next, you'll want to get the API token for the account, this API token will be used in the next step with connecting the Proxmox metric server.
+
+![API token](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/influxdb-apitoken.PNG)
+
+Before going to the next step, validate influxdb can pass data, setup a query and verify that data can be seen in the logs.
+
+![Validate Connection](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/influxdb-validate-connection.PNG)
 
 ## Step 2
 
+The next step is to navigate to your proxmox server and setup a metric server.  Navigate to the DataCenter, scroll down to 'Metric Server' and add a new influxdb server.  The settings are below are the same settings used in step 1 to created the influxdb account. 
 
+![aaa](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/proxmox-metric-server.PNG)
 
 ## Step 3
 
@@ -97,14 +115,19 @@ Once Grafana is installed, navigate to `http://<ip address>:3000` and login with
 
 Install the settings as follows, important, **the hostname in the http setting is the docker hostname of your influxdb container** 
 
+![Grafana HTTP settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/grafana-http-auth.PNG)
+
 Set the influxdb bucket name, organization and API token that was previusly established with the influxdb container.
 
-There is a really great dashboard for Proxmox at this link, you can create your own dashboard but this dashboard had everything that i wanted
+![Graphana Influxdb settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/grafana-influx-settings.PNG)
+
+There is a really great dashboard for Proxmox at this link, you can create your own dashboard but this dashboard had everything that i wanted below.
 
 https://grafana.com/grafana/dashboards/15356
 
 Now navigate to the dashboard you have created, my bucket defaulted to a different bucket, make sure you select the right bucket and enjoy your metrics!
 
+![](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/grafana-snapshot-dashboard.PNG)
 
 {% comment %}
 
