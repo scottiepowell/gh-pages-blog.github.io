@@ -37,7 +37,7 @@ Now, the advanced options of portainer must be configured for this container, na
 
 Now to persist the data collected, naviagate to the volume tab in portainer and setup two volumes, the volume created earlier will be first, connection the volume to the location `/var/lib/influxdb2` in the container and bind mount a container to `/etc/influxdb` on both the host and container.
 
-![Container volume settings](https://github.com/scottiepowell/gh-pages-blog.github.io/blob/main/assets/img/posts/2022-06-27/port-vol-settings.PNG)
+![Container volume settings](./assets/img/posts/2022-06-27/port-vol-settings.PNG)
 
 Now, deploy the container by clicking the 'deploy container' button and check the container to verify that the container is running, if the container isn't running take a look at the docker logs for errors, the logs can be seen in the bottom corner of the sceenshot.
 
