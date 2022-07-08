@@ -124,7 +124,7 @@ Set the influxdb bucket name, organization and API token that was previusly esta
 
 There is a really great dashboard for Proxmox at this link, you can create your own dashboard but this dashboard had everything that i wanted below.
 
-https://grafana.com/grafana/dashboards/15356
+[grafana dashboards]https://grafana.com/grafana/dashboards/15356
 
 Now navigate to the dashboard you have created, my bucket defaulted to a different bucket, make sure you select the right bucket and enjoy your metrics!
 
