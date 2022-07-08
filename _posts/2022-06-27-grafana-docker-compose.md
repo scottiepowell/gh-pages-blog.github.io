@@ -27,7 +27,7 @@ First thing, navigate to the volume tab in portainer and create a new volume.  T
 
 <center><img src='/assets/img/posts/2022-06-27/port-vol-create.PNG'></center>
 
-Next is creating a container in portainer, as seen below i've created a container named `influxdb` and we are pulling the image from DockerHub using the alpine distro and version 2.1.  If you want to research version for infuxdb, navigate to ![docker hub influxdb](https://hub.docker.com/_/influxdb?tab=tags&page=2) and you will find the 2.1-alpine tag.  One of the strengths of containers is if you want to experiment and test other containers with a different OS or versions, it's a quick rebuild and standup a new container.  Expose the port of 8086 in docker and the container.    
+Next is creating a container in portainer, as seen below i've created a container named `influxdb` and we are pulling the image from DockerHub using the alpine distro and version 2.1.  If you want to research version for infuxdb, navigate to [docker hub influxdb](https://hub.docker.com/_/influxdb?tab=tags&page=2) and you will find the 2.1-alpine tag.  One of the strengths of containers is if you want to experiment and test other containers with a different OS or versions, it's a quick rebuild and standup a new container.  Expose the port of 8086 in docker and the container.    
 
 <center><img src='/assets/img/posts/2022-06-27/port-img-net.PNG'></center>
 
@@ -65,7 +65,7 @@ The next step is to navigate to your proxmox server and setup a metric server.  
 
 In step 1, we use portainer to deploy the influxdb docker container, for grafana, we are going to mix things up and deploy using a docker-compose YAML file.
 
-I'll break the code into smaller chunks and provide some narrative on each section, here is a link to the ![full code](https://github.com/scottiepowell/code-configs/blob/4f67ec97d12cc0d67a4960c5314b9bd5044cfa73/docker/influxdb/docker-compose.yaml) on my github and can skip this section if you are familar with docker-compose and how it utilizes YAML values
+I'll break the code into smaller chunks and provide some narrative on each section, here is a link to the [full code](https://github.com/scottiepowell/code-configs/blob/4f67ec97d12cc0d67a4960c5314b9bd5044cfa73/docker/influxdb/docker-compose.yaml) on my github and can skip this section if you are familar with docker-compose and how it utilizes YAML values
 
 ___
 
