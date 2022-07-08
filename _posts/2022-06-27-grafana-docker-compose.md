@@ -65,7 +65,7 @@ The next step is to navigate to your proxmox server and setup a metric server.  
 
 In step 1, we use portainer to deploy the influxdb docker container, for grafana, we are going to mix things up and deploy using a docker-compose YAML file.
 
-I'll break the code into smaller chunks and provide some narrative on each section, here is a link to the full code on my github and can skip this section if you are familar with docker-compose and how it utilizes YAML values
+I'll break the code into smaller chunks and provide some narrative on each section, here is a link to the ![full code](https://github.com/scottiepowell/code-configs/blob/4f67ec97d12cc0d67a4960c5314b9bd5044cfa73/docker/influxdb/docker-compose.yaml) on my github and can skip this section if you are familar with docker-compose and how it utilizes YAML values
 
 ___
 
@@ -93,12 +93,13 @@ services:
 ```    
 
 The image above tells Docker to pull the latest open-source grafana image 'grafana-oss' from Docker Hub.  Instead of using the tag 'latest' there are other options to use operating systems like Ubuntu, the latest tag defaults to the operating system of alpine.  The ports are mapped from docker to the container on 3000 and the volume is mounted as discussed earlier.
-___   
-   
+
+```   
 networks:
   default:
     name: nginxproxymanager_default
     external: true      
+```
 ___
 
 The networks section of this docker-compose is critical to get right, this section will tell Docker to install Grafana on a specific network under name.  The **network must be the same as the network that influxDB was installed on** or else the to containers will not be able to communicate.
@@ -109,7 +110,7 @@ Now run the following command from the diretory of our docker-compose file
 
 Verify your container is running with `docker ps`
 
-Security, one important thing to point out is this configuration doesn't include any inherent security features like SSL, the connections are insecure.  Right now, i'm using a reverse proxy to secure the containers and the connection to proxmox is on my internal network, but in the future i'll look at doing a updated posted to describ how to secure the connections between Proxmox, Influx and Grafana with SSL for a production environment.  Right now, that is out of scope.
+Security, one important thing to point out is this configuration doesn't include any inherent security features like SSL, the connections are insecure.  Right now, i'm using a reverse proxy to secure the containers and the connection to proxmox on my internal network, in the future i'll look at doing a updated posted to describe how to secure the connections between Proxmox, Influx and Grafana with SSL for a production environment.  Right now, that is out of scope.
 
 Once Grafana is installed, navigate to `http://<ip address>:3000` and login with the default username/password of `admin/admin`.  Once logged in navigate to configure > Datasource and install InfluxDB
 
