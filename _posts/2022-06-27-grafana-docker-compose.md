@@ -57,7 +57,7 @@ Before going to the next step, validate influxdb can pass data, setup a query an
 
 ## Step 2
 
-The next step is to navigate to your proxmox server and setup a metric server.  Navigate to the DataCenter, scroll down to 'Metric Server' and add a new influxdb server.  The settings are below are the same settings used in step 1 to created the influxdb account. 
+The next step is to navigate to your proxmox server and setup a metric server.  Navigate to the DataCenter, scroll down to 'Metric Server' and add a new influxdb server.  The settings below are the same settings used in step 1 to created the influxdb account. 
 
 ![aaa](./assets/img/posts/2022-06-27/proxmox-metric-server.PNG)
 
