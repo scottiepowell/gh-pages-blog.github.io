@@ -2,7 +2,7 @@
 layout: post
 read_time: true
 show_date: true
-title: "Road to Homelab:<img src='/assets/img/posts/mile/Mile_marker_1.png'>- moving disks using qm command"
+title: "Road to Homelab:<right><img src='/assets/img/posts/mile/Mile_marker_1.png'></right>- moving disks using qm command"
 date: 2022-06-23
 img: posts/default-post.png
 tags: [proxmox, linux, infrastructure, Road to Homelab]
