@@ -2,7 +2,7 @@
 layout: post
 read_time: true
 show_date: true
-title: "Road to Homelab:<right><img src='/assets/img/posts/mile/Mile_marker_1.png'></right>- moving disks using qm command"
+title: "Road to Homelab: moving disks using qm command"
 date: 2022-06-23
 img: posts/default-post.png
 tags: [proxmox, linux, infrastructure, Road to Homelab]
@@ -12,7 +12,7 @@ description: "Moving vm's with the qm command"
 github:  scottiepowell/
 mathjax: yes
 ---
-<img align="right" width="100" height="100" src='/assets/img/posts/mile/Mile_marker_1.png'>
+<img align="right" title="road to Homelab, marker 1" src='/assets/img/posts/mile/Mile_marker_1.png'>
 
 I recently bought some new HDD's, a much needed storage upgrade for my proxmox cluster, i've been running into storage issues in my current configuration.  I've got a 1TB HDD that is hosting all my VM's, LXC's and images for my primary node.  I've researched a few different ways to migrate VM's from one physical storage to another, they all have their pro's and con's.  For my particular use case i going to use a three stage method to migrate all my VM's using the proxmox GUI and the QM command.
 
