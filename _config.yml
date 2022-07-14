@@ -42,7 +42,7 @@ bandcamp: placeholder # Add your Bandcamp username
 stackoverflow: placeholder # Add your stackoverflow account
 
 # Newsletter
-mailchimp: "https://github.us1.list-manage.com/subscribe/post?u=8ece198b3eb260e6838461a60&amp;id=397d90b5f4" #Make a mailchimp newsletter?
+mailchimp: "https://chimpstatic.com/mcjs-connected/js/users/df266b8a6fe2381834b8e3873/8a289d132d21ce5e76d8955f9.js" #Make a mailchimp newsletter?
 
 # Disqus
 discus_identifier: placeholder # Add your discus identifier
