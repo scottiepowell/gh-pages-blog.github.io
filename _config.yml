@@ -38,19 +38,17 @@ website: https://blog.roadmaps.link # Add your website
 linkedin: placeholder # Add your Linkedin handle
 github: scottiepowell # Add your Github handle
 twitter: 'scottiepowell' # Add your Twitter handle
-bandcamp: placeholder # Add your Bandcamp username
-stackoverflow: placeholder # Add your stackoverflow account
+stackoverflow: pdub # Add your stackoverflow account
 
 # Newsletter
 mailchimp: "https://link.us11.list-manage.com/subscribe/post?u=df266b8a6fe2381834b8e3873&amp;id=11520c96b6" #Make a mailchimp newsletter?
 
 # Disqus
-discus_identifier: placeholder # Add your discus identifier
+discus_identifier: blog-roadmaps-link # Add your discus identifier
 comments_curtain: yes # leave empty to show the disqus embed directly
 
 # Tracker
-analytics: G-R8SZS2YBZK #Google Analytics?
-fbadmin: ar.maybach #what is this?
+analytics: G-EDT1PJG0QP 
 
 # Paginate
 paginate: 10
